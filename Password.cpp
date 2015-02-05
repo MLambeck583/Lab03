@@ -18,7 +18,7 @@ Password::~Password()
 	}
 }
 
-int getNumMatches(String* curr_word, String* word_guess)
+int Password::getNumMatches(String* curr_word, String* word_guess)
 {
 	int len = curr_word->length();
 	int matches = 0;
