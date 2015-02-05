@@ -1,7 +1,8 @@
 #include "Password.h"
 using CSC2110::ListArrayIterator;
-#include "Text.h"
-using CSC2110::String;
+#include "ListArrayIterator.h"
+using CSC2110::ListArray;
+#include "ListArray.h"
 
 #include <iostream>
 using namespace std;
