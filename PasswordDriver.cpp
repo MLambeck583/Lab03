@@ -1,5 +1,5 @@
 #include "Password.h"
-//fill in includes, don't forget namespaces
+
 #include "Text.h"
 using CSC2110::String;
 #include "Keyboard.h"
