@@ -10,7 +10,14 @@ using CSC2110::String;
 using namespace std;
 
 
-Password::Password() { }
+Password::Password() 
+{
+   //create two empty lists
+   all_words = new ListArray<String>;
+   viable_words = new ListArray<String>;
+   
+   len = 0;
+}
 
 Password::~Password()
 {
@@ -23,11 +30,11 @@ Password::~Password()
 
 int Password::getNumMatches(String* curr_word, String* word_guess)
 {
-	int length = curr_word->length(); //Error
+	int length = curr_word->length();
 	int matches = 0;
 	for(int i = 0; i < len; i++)
 	{
-		if(curr_word->charAt(i) == word_guess->charAt(i)) //Error (2)
+		if(curr_word->charAt(i) == word_guess->charAt(i))
 			matches++;
 	}
 	return matches;
@@ -35,34 +42,60 @@ int Password::getNumMatches(String* curr_word, String* word_guess)
 
 void Password::addWord(String* word)
 {
-	len = word->length(); //Error
-	String* items = all_words->get(1);
-	if (len == items->length()) //Makes sure word added is same length as words in the word list //Error
+
+	if(all_words->isEmpty())
 	{
 		viable_words->add(word);
 		all_words->add(word);
+	    len = word->length();
 	}
 	else
 	{
-		cout << "Invalid length";
+        if (word->length() != len) 
+			return;
+		viable_words->add(word);
+		all_words->add(word);
+/*
+
+		String* items = all_words->get(1);
+	
+		items->displayString(); //Error Checking
+	
+		int item_len = items->length();
+
+		cout << endl <<item_len << "     " << all_words->size(); //Error Checking
+		cout << "     " << all_words->isEmpty() << endl; //Error Checking
+
+		if (len == item_len) //Makes sure word added is same length as words in the word list
+		{
+			viable_words->add(word);
+			all_words->add(word);
+		}
+*/
 	}
 }
 
 void Password::guess(int try_password, int num_matches)
 {
-	String* guess = all_words->get(try_password);
+	String* guess = all_words->get(try_password); 
 	int num_match = 0;
 	int i = 1;
+	int n = 0;
 	
 	ListArrayIterator<String>* iter = all_words->iterator();
+	String* next = iter->next();
 	while (iter->hasNext())
 	{
-		num_match = getNumMatches(guess, iter->next());
+		num_match = getNumMatches(guess, next);
 		if (num_match != num_matches)
 		{
-			viable_words->remove(i);
+			viable_words->remove(i-n);
+			n++;
+			if (viable_words->get(5) == all_words->get(20))
+				cout << "Fail";
 		}
-	i++;
+		i++;
+		next = iter->next();
 	}
 }
 
@@ -74,11 +107,14 @@ int Password::getNumberOfPasswordsLeft() //returns the number of possible passwo
 void Password::displayViableWords() //display the current list of possible passwords
 {
 	ListArrayIterator<String>* iter = viable_words->iterator();
+	cout<<endl;
 	while(iter->hasNext())
 	{
 		String* word = iter->next();
-		word->displayString(); //Error
+		word->displayString();
+		cout << endl;
 	}
+	cout<<endl;
 }
 
 String* Password::getOriginalWord(int index) //get a word from the original list of all passwords, 1-based
