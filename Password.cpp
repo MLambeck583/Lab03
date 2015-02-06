@@ -23,7 +23,7 @@ Password::~Password()
 
 int Password::getNumMatches(String* curr_word, String* word_guess)
 {
-	int len = curr_word->length(); //Error
+	int length = curr_word->length(); //Error
 	int matches = 0;
 	for(int i = 0; i < len; i++)
 	{
