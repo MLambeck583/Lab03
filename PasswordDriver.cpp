@@ -1,5 +1,4 @@
 #include "Password.h"
-
 #include "Text.h"
 using CSC2110::String;
 #include "Keyboard.h"
@@ -8,7 +7,7 @@ using CSC2110::Keyboard;
 using CSC2110::ReadFile;
 #include "WriteFile.h"
 using CSC2110::WriteFile;
-
+//------------------------------
 #include <iostream>
 using namespace std;
 
