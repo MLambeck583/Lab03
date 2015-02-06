@@ -23,11 +23,11 @@ Password::~Password()
 
 int Password::getNumMatches(String* curr_word, String* word_guess)
 {
-	int len = curr_word->length();
+	int len = curr_word->length(); //Error
 	int matches = 0;
 	for(int i = 0; i < len; i++)
 	{
-		if(curr_word->charAt(i) == word_guess->charAt(i))
+		if(curr_word->charAt(i) == word_guess->charAt(i)) //Error (2)
 			matches++;
 	}
 	return matches;
@@ -35,9 +35,9 @@ int Password::getNumMatches(String* curr_word, String* word_guess)
 
 void Password::addWord(String* word)
 {
-	len = word->length();
+	len = word->length(); //Error
 	String* items = all_words->get(1);
-	if (len == items->length()) //Makes sure word added is same length as words in the word list
+	if (len == items->length()) //Makes sure word added is same length as words in the word list //Error
 	{
 		viable_words->add(word);
 		all_words->add(word);
@@ -77,7 +77,7 @@ void Password::displayViableWords() //display the current list of possible passw
 	while(iter->hasNext())
 	{
 		String* word = iter->next();
-		word->displayString();
+		word->displayString(); //Error
 	}
 }
 
