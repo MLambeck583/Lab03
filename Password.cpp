@@ -91,6 +91,8 @@ void Password::guess(int try_password, int num_matches)
 		{
 			viable_words->remove(i-n);
 			n++;
+			if (viable_words->get(5) == all_words->get(20))
+				cout << "Fail";
 		}
 		i++;
 		next = iter->next();
